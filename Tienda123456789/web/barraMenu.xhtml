@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+      <h:form>
+            <p:growl id="msg"></p:growl>
+            <p:menubar>
+                <p:menuitem value="Home"></p:menuitem>
+                <p:submenu label="Gestión">
+                    <p:menuitem value="Personas" outcome="personas"></p:menuitem>
+                    <p:menuitem value="Productos" outcome="productos"></p:menuitem>
+                    <p:menuitem value="Facturas" outcome="facturas"></p:menuitem>
+                    <p:menuitem value="Empleados" outcome="empleados"></p:menuitem>
+                    <p:menuitem value="Precios" outcome="precios"></p:menuitem>
+                    <p:menuitem value="Ventas" outcome="ventas"></p:menuitem>
+                </p:submenu>
+                
+            </p:menubar>
+            
+        </h:form>  
+        
+        <br/>
+        <br/>
+    </body>
+</html>

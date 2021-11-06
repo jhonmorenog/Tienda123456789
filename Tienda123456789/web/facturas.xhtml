@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:include src="barraMenu.xhtml"></ui:include>
+        <h:form id="form1">
+                        <p:growl id="growlMsg" showDetail="true" ></p:growl>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Número factura"></p:outputLabel>
+                            <p:inputText value="#{facturasC.numero}"></p:inputText>
+                            <p:outputLabel value="Fecha"></p:outputLabel>
+                            <p:datePicker value="#{facturasC.fecha}" pattern="yyyy/MM/dd HH:mm:ss" showTime="true">
+                                <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" type="localDateTime"/>
+                            </p:datePicker>
+                            <p:outputLabel value="Documento cliente"></p:outputLabel>
+                            <p:inputText value="#{facturasC.personasdocumento}"></p:inputText>
+                            <p:outputLabel value="Documento empleado"></p:outputLabel>
+                            <p:inputText value="#{facturasC.empleadodocumento}"></p:inputText>
+                            <p:commandButton value="Guardar" actionListener="#{facturasC.insertar()}" update="growlMsg"></p:commandButton>
+                            <p:commandButton value="Actualizar" actionListener="#{facturasC.actualizar()}" update="growlMsg"></p:commandButton>
+                            <p:commandButton value="Eliminar" actionListener="#{facturasC.eliminar()}" update="growlMsg"></p:commandButton>
+                            <p:commandButton value="Consultar" actionListener="#{facturasC.consultaPrimaria()}" update="growlMsg,form1"></p:commandButton>
+                        </p:panelGrid>
+                    </h:form>
+    </h:body>
+</html>

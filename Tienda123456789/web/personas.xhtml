@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+    </h:head>
+    <body>
+        <ui:include src="barraMenu.xhtml"></ui:include>
+        <h:form id="form1">
+            <p:growl id="msg1" showDetail="true" ></p:growl>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Documento" for="doc"></p:outputLabel>
+                <p:autoComplete value="#{personasC.documento}" id="doc" completeMethod="#{personasC.listaDocumento}"></p:autoComplete>
+                <p:outputLabel value="Primer nombre" for="pn"></p:outputLabel>
+                <p:autoComplete value="#{personasC.pnombre}" id="pn" completeMethod="#{personasC.listaPnombre}">
+                    <p:ajax event="itemSelect" listener="#{personasC.consultaPnombre()}" update="msg1,form1"></p:ajax>
+                </p:autoComplete>
+                <p:outputLabel value="Segundo nombre" for="sn"></p:outputLabel>
+                <p:inputText value="#{personasC.snombre}" id="sn"></p:inputText>
+                <p:outputLabel value="Primer apellido" for="pa"></p:outputLabel>
+                <p:inputText value="#{personasC.papellido}" id="pa"></p:inputText>
+                <p:outputLabel value="Segundo apellido" for="sa"></p:outputLabel>
+                <p:inputText value="#{personasC.sapellido}" id="sa"></p:inputText>
+                <p:outputLabel value="Email" for="e"></p:outputLabel>
+                <p:inputText value="#{personasC.email}" id="e" type="email"></p:inputText>
+                <p:commandButton value="Guardar" actionListener="#{personasC.insertar()}" update="msg1"></p:commandButton>
+                <p:commandButton value="Actualizar" actionListener="#{personasC.actualizar()}" update="msg1"></p:commandButton>
+                <p:commandButton value="Eliminar" actionListener="#{personasC.eliminar()}" update="msg1,form1"></p:commandButton>
+                <p:commandButton value="Consultar" actionListener="#{personasC.consultaPrimaria()}" update="msg1,form1"></p:commandButton>
+            </p:panelGrid>
+        </h:form>
+        <h:form id="form2">
+            <p:dataTable id="tabla1" var="persona" value="#{personasC.personas}" rowKey="#{persona.documento}" selectionMode="single">
+
+
+
+                <f:facet name="header">
+                    <div >
+                        Personas registradas
+
+                        <div style="float: right">
+                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:columnToggler datasource="tabla1" trigger="toggler"/>
+                        </div>
+                    </div>
+                </f:facet>
+
+                <p:column headerText="Documento">
+                    <h:outputText value="#{persona.documento}"></h:outputText>
+                </p:column>
+                <p:column headerText="Primer nombre">
+                    <h:outputText value="#{persona.pnombre}"></h:outputText>
+                </p:column>
+                <p:column headerText="Segundo nombre">
+                    <h:outputText value="#{persona.snombre}"></h:outputText>
+                </p:column>
+                <p:column headerText="Primer apellido">
+                    <h:outputText value="#{persona.papellido}"></h:outputText>
+                </p:column>
+                <p:column headerText="Segundo apellido">
+                    <h:outputText value="#{persona.sapellido}"></h:outputText>
+                </p:column>
+                <p:column headerText="Correo electrónico">
+                    <h:outputText value="#{persona.email}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </body>
+</html>
