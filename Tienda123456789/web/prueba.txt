@@ -1,2 +1,2 @@
-Prueba desde la web
+Prueba desde el NetBeans 12.0
 ¡Qué bonito!
