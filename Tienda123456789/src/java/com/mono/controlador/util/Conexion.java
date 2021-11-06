@@ -11,7 +11,7 @@ public class Conexion {
     private Connection conexion;
     private String usuarioBD="root";
     private String claveBD="";
-    private String nombreBD="tienda3";
+    private String nombreBD="tienda";
     
     public Conexion(){
         try {
