@@ -10,7 +10,13 @@
     </h:head>
     <h:body>
         <ui:include src="barraMenu.xhtml"></ui:include>
-    
+    <br/>
+    <div class="card">
+    <h5>Item Navigators and Indicators</h5>
+    <p:galleria value="#{fotosC.fotos}" var="f"  style="max-width: 640px">
+        <p:graphicImage name="#{f.foto}" alt="#{f.descripcion}" style="width: 100%; display: block;" library="img"  />
+    </p:galleria>
+</div>
         
 
     </h:body>
