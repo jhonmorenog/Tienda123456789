@@ -27,6 +27,9 @@ public class PersonasC extends Personas {
     
     @PostConstruct
     public void init(){
+       llenarTabla();
+    }
+    public void llenarTabla(){
         personas=new ArrayList<>();
         
         String sql = "SELECT * FROM Personas";
@@ -41,7 +44,6 @@ public class PersonasC extends Personas {
             Msg.error(ex.getMessage());
         }
     }
-    
     public void consultaPrimaria() {
         String sql = "SELECT * FROM Personas WHERE documento='" + getDocumento() + "'";
         
@@ -109,14 +111,17 @@ public class PersonasC extends Personas {
         String sql = "DELETE FROM Personas WHERE documento='" + getDocumento() + "'";
         String m = "Se ha eliminado el Persona";
         Msg.msgDB(m, CRUD.DML(sql, m));
+        llenarTabla();
     }
     
     public void insertar() {
         CRUD.insert(creaO());
+        llenarTabla();
     }
 
     public void actualizar() {
         CRUD.update(creaO(), "documento='" + getDocumento() + "'");
+        llenarTabla();
     }
 
     private ArrayList<Object> creaO() {
