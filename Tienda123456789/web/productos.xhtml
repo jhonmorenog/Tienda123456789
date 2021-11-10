@@ -2,30 +2,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-  
+
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="css/primeflex.min.css"/>
     </h:head>
     <h:body>
         <ui:include src="barraMenu.xhtml"></ui:include>
-    
+
         <h:form id="form1">
-            <p:growl id="msg1" showDetail="true"></p:growl>
-            <p:panelGrid columns="2">
-                <p:outputLabel value="Código de barras" for="cb" ></p:outputLabel>
-                <p:inputText value="#{productosC.cb}" id="cb"></p:inputText>
-                <p:outputLabel value="Nombre del producto" for="nombre" ></p:outputLabel>
-                <p:inputText value="#{productosC.nombre}" id="nombre"></p:inputText>
-                <p:outputLabel value="Descripción del producto" for="descripcion" ></p:outputLabel>
-                <p:inputText value="#{productosC.descripcion}" id="descripcion"></p:inputText>
-                <p:commandButton value="Guardar" actionListener="#{productosC.insertar()}" update="msg1"></p:commandButton>
-                <p:commandButton value="Actualizar" actionListener="#{productosC.actualizar()}" update="msg1"></p:commandButton>
-                <p:commandButton value="Eliminar" actionListener="#{productosC.eliminar()}" update="msg1"></p:commandButton>
-                <p:commandButton value="Consultar" actionListener="#{productosC.consultaPrimaria()}" update="msg1, form1"></p:commandButton>
-            </p:panelGrid>
-           
+            <div class="p-grid">
+                <div class="p-col-1"></div>
+                <div class="p-col-3">
+                    <p:growl id="msg1" showDetail="true"></p:growl>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Código de barras" for="cb" ></p:outputLabel>
+                        <p:inputText value="#{productosC.cb}" id="cb"></p:inputText>
+                        <p:outputLabel value="Nombre del producto" for="nombre" ></p:outputLabel>
+                        <p:inputText value="#{productosC.nombre}" id="nombre"></p:inputText>
+                        <p:outputLabel value="Descripción del producto" for="descripcion" ></p:outputLabel>
+                        <p:inputText value="#{productosC.descripcion}" id="descripcion"></p:inputText>
+                        <p:commandButton value="Guardar" actionListener="#{productosC.insertar()}" update="msg1,tabla1"></p:commandButton>
+                        <p:commandButton value="Actualizar" actionListener="#{productosC.actualizar()}" update="msg1,tabla1"></p:commandButton>
+                        <p:commandButton value="Eliminar" actionListener="#{productosC.eliminar()}" update="msg1,tabla1"></p:commandButton>
+                        <p:commandButton value="Consultar" actionListener="#{productosC.consultaPrimaria()}" update="msg1, form1,tabla1"></p:commandButton>
+                    </p:panelGrid>
+                </div>
+                <div class="p-col-7">
+                    <p:dataTable id="tabla1" value="#{productosC.productos}" var="p">
+                        <p:column headerText="Código de Barras">
+                            <h:outputText value="#{p.cb}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{p.nombre}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Descripción">
+                            <h:outputText value="#{p.descripcion}"></h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div class="p-col-1"></div>
+            </div>
+
+
+
         </h:form>
 
     </h:body>

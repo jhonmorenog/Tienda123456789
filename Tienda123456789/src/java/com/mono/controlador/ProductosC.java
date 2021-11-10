@@ -8,13 +8,9 @@ package com.mono.controlador;
 import com.mono.controlador.util.CRUD;
 import com.mono.controlador.util.Msg;
 import com.mono.modelo.Productos;
-import com.mono.modelo.Ventas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -23,10 +19,13 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class ProductosC extends Productos{
-     List<Productos> productos;
+     private List<Productos> productos;
             
     @PostConstruct
     public void init(){
+        llenarTable();
+    }
+    public void llenarTable(){
         productos=new ArrayList<>();
         String sql = "SELECT * FROM Productos";
         
@@ -62,17 +61,28 @@ public class ProductosC extends Productos{
         String sql = "DELETE FROM Productos WHERE cb='"+getCb()+"'";
         String m = "Se ha eliminado el Producto";
         Msg.msgDB(m, CRUD.DML(sql, m));
+        llenarTable();
     }
 
      public void insertar(){
         CRUD.insert(creaO());
+        llenarTable();
     }
     public void actualizar(){
         CRUD.update(creaO(),"cb='"+getCb()+"'");
+        llenarTable();
     }
     private ArrayList<Object> creaO (){
         ArrayList<Object> o =new ArrayList<>();
         o.add(this);
         return o;
+    }
+
+    public List<Productos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 }
