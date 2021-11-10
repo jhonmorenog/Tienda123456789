@@ -15,7 +15,7 @@
         <ui:include src="barraMenu.xhtml"></ui:include>
          <h:form id="form1">
         <div class="p-grid">
-             <div class="p-col-1"></div>
+             <div class="p-col-1 "></div>
             <div class="p-col-3">
                
                     <p:growl id="msg1" showDetail="true" ></p:growl>
@@ -34,10 +34,10 @@
                         <p:inputText value="#{personasC.sapellido}" id="sa"></p:inputText>
                         <p:outputLabel value="Email" for="e"></p:outputLabel>
                         <p:inputText value="#{personasC.email}" id="e" type="email"></p:inputText>
-                        <p:commandButton value="Guardar" actionListener="#{personasC.insertar()}" update="msg1,tabla1"></p:commandButton>
-                        <p:commandButton value="Actualizar" actionListener="#{personasC.actualizar()}" update="msg1,tabla1"></p:commandButton>
-                        <p:commandButton value="Eliminar" actionListener="#{personasC.eliminar()}" update="msg1,form1,tabla1"></p:commandButton>
-                        <p:commandButton value="Consultar" actionListener="#{personasC.consultaPrimaria()}" update="msg1,form1,tabla1"></p:commandButton>
+                        <p:commandButton value="Guardar" icon="pi pi-user-plus" styleClass="rounded-button ui-button-success" actionListener="#{personasC.insertar()}" update="msg1,tabla1"></p:commandButton>
+                        <p:commandButton value="Actualizar" icon="pi pi-user-edit" styleClass="rounded-button ui-button-warning" actionListener="#{personasC.actualizar()}" update="msg1,tabla1"></p:commandButton>
+                        <p:commandButton  styleClass="rounded-button ui-button-danger" icon="pi pi-times" value="Eliminar" actionListener="#{personasC.eliminar()}" update="msg1,form1,tabla1"></p:commandButton>
+                        <p:commandButton value="Consultar" icon="pi pi-search" styleClass="rounded-button ui-button-info" actionListener="#{personasC.consultaPrimaria()}" update="msg1,form1,tabla1"></p:commandButton>
                     </p:panelGrid>
                
             </div>
