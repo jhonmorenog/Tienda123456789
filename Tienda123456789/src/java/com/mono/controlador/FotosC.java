@@ -48,11 +48,6 @@ public class FotosC extends Fotos {
         }
     }
 
-    public void llenarFoto(FileUploadEvent evento) {
-        System.err.println(evento.getFile().getFileName());
-        this.file = evento.getFile();
-    }
-
     public void consultaPrimaria() {
         String sql = "SELECT * FROM Fotos WHERE id='" + getId() + "'";
         System.err.println(sql);
@@ -83,7 +78,7 @@ public class FotosC extends Fotos {
             setFoto(file.getFileName());
             CRUD.insert(creaO());
         } catch (IOException ex) {
-            Logger.getLogger(FotosC.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.error(ex.getMessage());
         }
 
     }
