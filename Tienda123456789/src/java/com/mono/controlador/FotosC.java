@@ -51,9 +51,9 @@ public class FotosC extends Fotos {
     }
 
     public void consultaPrimaria() {
-        
+        fotos.clear();
         String sql = "SELECT * FROM Fotos f INNER JOIN Productos p ON p.cb=f.productoscb  WHERE id='" + getId() + "'";
-        System.err.println(sql);
+       
         ResultSet r = CRUD.select(sql);
         try {
             if (r.next()) {
@@ -71,6 +71,23 @@ public class FotosC extends Fotos {
         } catch (SQLException ex) {
             Msg.error(ex.getMessage());
         }
+       
+        
+        sql = "SELECT foto, id FROM Fotos  WHERE productoscb='" + getProductoscb() + "'";
+      
+        r = CRUD.select(sql);
+        try {
+            while (r.next()) {
+                Fotos n= new Fotos();
+                n.setFoto(r.getString(1));
+                n.setId(r.getInt(2));
+                fotos.add(n);
+               
+            }
+        } catch (SQLException ex) {
+            Msg.error(ex.getMessage());
+        }
+        
     }
 
     public void eliminar() {

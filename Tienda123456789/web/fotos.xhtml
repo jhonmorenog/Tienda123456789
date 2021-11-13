@@ -43,9 +43,14 @@ and open the template in the editor.
                 </p:panelGrid>
                 </div>
                 <div class="p-col-7">
-                    <p:card style="width: 25em" id="card1">
+                    <p:card style="width: 600px" id="card1">
                     <f:facet name="header">
-                        <p:graphicImage library="img" name="#{fotosC.foto}"></p:graphicImage>
+                         <p:galleria value="#{fotosC.fotos}" var="f" widgetVar="galleriaWidget" >
+                             <p:graphicImage name="#{f.foto}" library="img" alt="Código ID #{fotosC.id}" title="#{fotosC.id}">
+                             </p:graphicImage>
+                        </p:galleria>
+                        
+                      
                     </f:facet>
                     <f:facet name="title">
                         <p:outputLabel value="#{fotosC.nombre}"></p:outputLabel>
