@@ -9,19 +9,23 @@ package com.mono.modelo;
  *
  * @author Jhon Mauricio Moreno
  */
-public class Fotos {
+public class Fotos extends Productos{
     private int id;
-    private String descripcion;
+    private String descripcionFotos;
     private String foto;
     private String productoscb;
 
     public Fotos() {
+        id=0;
+        descripcionFotos="Producto";
+        foto="caja.png";
+        productoscb="ABCD";
     }
 
     public Fotos(int id, String descripcion, String foto, String productoscb) {
         this.id = id;
        
-        this.descripcion = descripcion;
+        this.descripcionFotos = descripcion;
         this.foto = foto;
         this.productoscb = productoscb;
     }
@@ -43,12 +47,12 @@ public class Fotos {
     }
 
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescripcionFotos() {
+        return descripcionFotos;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionFotos(String descripcion) {
+        this.descripcionFotos = descripcion;
     }
 
     public String getFoto() {
@@ -61,7 +65,7 @@ public class Fotos {
 
     @Override
     public String toString() {
-        return "Fotos set id='" + id + "', descripcion='" + descripcion + "', foto='" + foto + "', productoscb='" + productoscb + "'";
+        return "Fotos set id='" + id + "', descripcion='" + descripcionFotos + "', foto='" + foto + "', productoscb='" + productoscb + "'";
     }
     
     

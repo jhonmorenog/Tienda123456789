@@ -38,9 +38,11 @@ public class FotosC extends Fotos {
     private List<Fotos> fotos;
     private UploadedFile file;
 
+    
+    
     @PostConstruct
     public void init() {
-        destination="D:\\jhon\\Documents\\NetBeansProjects\\Tienda123456789\\Tienda123456789\\web\\resources\\img\\";
+        destination = "D:\\jhon\\Documents\\NetBeansProjects\\Tienda123456789\\Tienda123456789\\web\\resources\\img\\";
         fotos = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Fotos f = new Fotos(i, "Campo verde", i + ".png", i + "");
@@ -49,15 +51,20 @@ public class FotosC extends Fotos {
     }
 
     public void consultaPrimaria() {
-        String sql = "SELECT * FROM Fotos WHERE id='" + getId() + "'";
+        
+        String sql = "SELECT * FROM Fotos f INNER JOIN Productos p ON p.cb=f.productoscb  WHERE id='" + getId() + "'";
         System.err.println(sql);
         ResultSet r = CRUD.select(sql);
         try {
             if (r.next()) {
                 setId(r.getInt(1));
-                setDescripcion(r.getString(2));
+                setDescripcionFotos(r.getString(2));
                 setFoto(r.getString(3));
                 setProductoscb(r.getString(4));
+                
+                setCb(r.getString(5));
+                setNombre(r.getString(6));
+                setDescripcion(r.getString(7));
             } else {
                 Msg.ad("La foto no se encuentra registrado.");
             }
@@ -84,7 +91,13 @@ public class FotosC extends Fotos {
     }
 
     public void actualizar() {
-        CRUD.update(creaO(), "id='" + getId() + "'");
+        try {
+            copyFile(file.getFileName(), file.getInputStream());
+            setFoto(file.getFileName());
+            CRUD.update(creaO(), "id='" + getId() + "'");
+        } catch (IOException ex) {
+            Msg.error(ex.getMessage());
+        }
     }
 
     private ArrayList<Object> creaO() {
@@ -129,4 +142,7 @@ public class FotosC extends Fotos {
         }
 
     }
+
+  
+
 }
